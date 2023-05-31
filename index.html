@@ -37,21 +37,86 @@
 </head>
 <body>
 	<header>
-		<h1 class="masthead">Time of Day</h1>
+		<h1 class="masthead">Time of Day and Weekday</h1>
 	</header>
     <main>
-	 <header><h3>A JavaScript Project by YOUR NAME HERE</h3></header>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
+	 <header><h3>A JavaScript Project by Bella Haile</h3></header>
+	 <h3 id="my-day"></h3>
+	 <h3 id="my-greeting">Greeting goes here</h3>
+	    <p>This web page uses JavaScript to determine the current hour, and presents a different image, custom message, and color based on each of the following times of day:
+		<p>Morning (5am to 12 noon)</p>
+		<p>Afternoon (12 noon to 6pm)</p>
+		<p>Evening (6pm to 11pm)</p>
+		<p>Night (11pm to 5am)</p>
+	  <img id="my-pic" src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
      <footer>
-      <p><small>&copy; 2022 by 
-          YOUR NAME HERE, All Rights Reserved ~ 
+      <p><small>&copy; 2023 by 
+          Bella Haile, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
      </p>
     </footer>
   </main>
  <script>
+
+	/*
+	Create a web page that uses JavaScript to determine the current hour, 
+	and presents a different image, custom message, 
+	and color based on each of the following times of day:
+
+	Morning (5am to 12 noon)
+	Afternoon (12 noon to 6pm)
+	Evening (6pm to 11pm)
+	Night (11pm to 5am)
+	*/
+
+	let myDate = new Date();
+	let myHour = myDate.getHours(); 
+	let myGreeting = "";
+	let myColor = "";
+	let myPic = "";
+	let dayList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	let day = myDate.getDay();
+	//myHour = 0;
+
+	console.log(myHour);
+	console.log(dayList[day]);
+
+	if(myHour >= 5 && myHour < 12){
+		myGreeting = "Good Morning!";
+		myColor = "gray";
+		myPic = "morning.jpg"
+	}else if(myHour >= 12 && myHour < 18){
+		myGreeting = "Good Afternoon!";
+	  	myColor = "lightblue";
+	  	myPic = "afternoon.jpg"
+	}else if(myHour >= 18 && myHour < 23){
+		myGreeting = "Good Evening!";
+		myColor = "darkred";
+		myPic = "evening.jpg"
+	}else{
+		 myGreeting = "Good Night!";
+		 myColor = "Midnightblue";
+		 myPic = "night.jpg"
+	}
+
+	myPic = "images/" + myPic;
+
+	document.getElementById("my-greeting").innerHTML = myGreeting;
+	document.querySelector("html").style.backgroundColor = myColor;
+	document.getElementById("my-pic").src = myPic;
+	document.getElementById("my-day").innerHTML = dayList[day];
+
+
+
+
+
+
+
+
+
+
+
     document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
     document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
  </script>
